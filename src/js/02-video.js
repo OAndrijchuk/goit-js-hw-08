@@ -1,5 +1,5 @@
 import Player from '@vimeo/player';
-let throttle = require('lodash.throttle');
+import throttle from 'lodash.throttle';
 
 const player = new Player('vimeo-player', {
   id: 'vimeo-player',
@@ -7,28 +7,12 @@ const player = new Player('vimeo-player', {
 });
 
 const trotVideoCurentTime = throttle(videoCurentTime, 1000);
+
 player.on('timeupdate', trotVideoCurentTime);
+
 function videoCurentTime(event) {
-  if (event.percent < 1) {
-    localStorage.setItem('videoplayer-current-time', event.seconds);
-    return;
-  }
-  localStorage.setItem('videoplayer-current-time', 0);
+  localStorage.setItem('videoplayer-current-time', event.seconds);
+  console.log(event.seconds);
 }
-
-player
-  .setCurrentTime(localStorage.getItem('videoplayer-current-time'))
-  .then(function (seconds) {
-    console.log('Videoplayer started from:', seconds);
-  })
-  .catch(function (error) {
-    switch (error.name) {
-      case 'RangeError':
-        // the time was less than 0 or greater than the video’s duration
-        break;
-
-      default:
-        // some other error occurred
-        break;
-    }
-  });
+const curentTime = localStorage.getItem('videoplayer-current-time');
+player.setCurrentTime(curentTime ? curentTime : 0);
