@@ -26,7 +26,7 @@ function createGalleryElements() {
 }
 createGalleryElements();
 
-let lightbox = new SimpleLightbox('.gallery a', {
+const lightbox = new SimpleLightbox('.gallery a', {
   /* options */
   captionsData: 'alt',
   captionPosition: 'bottom',

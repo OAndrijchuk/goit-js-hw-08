@@ -26,6 +26,7 @@ function onSaveElementValue({ target: { value, name } }) {
 }
 function onSendFeedback(event) {
   event.preventDefault();
+  console.log(feedbackFormState);
   event.target.reset();
   localStorage.removeItem('feedback-form-state');
   feedbackFormState = {};

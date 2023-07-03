@@ -15,4 +15,5 @@ function videoCurentTime(event) {
   console.log(event.seconds);
 }
 const curentTime = localStorage.getItem('videoplayer-current-time');
+
 player.setCurrentTime(curentTime ? curentTime : 0);
